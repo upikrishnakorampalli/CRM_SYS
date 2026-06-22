@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enterprise CRM Dashboard</title>
+<script>
+function showMessage(page){
+
+    alert(page + " page will be developed next.");
+
+}
+
+function logout(){
+
+    let confirmLogout = confirm("Are you sure you want to Logout?");
+
+    if(confirmLogout){
+
+        window.location.href = "login.html";
+
+    }
+
+}</script>
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+.container{
+display:flex;
+}
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#1e3a8a;
+color:white;
+position:fixed;
+}
+
+.sidebar h2{
+text-align:center;
+padding:20px;
+}
+
+.sidebar ul{
+list-style:none;
+padding:20px;
+}
+
+.sidebar li{
+padding:15px;
+margin:10px 0;
+cursor:pointer;
+border-radius:8px;
+transition:.3s;
+}
+
+.sidebar li:hover,
+.sidebar .active{
+background:#2563eb;
+}
+
+.main{
+margin-left:250px;
+padding:30px;
+width:100%;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.profile{
+font-size:20px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+text-align:center;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card i{
+font-size:35px;
+color:#2563eb;
+margin-bottom:15px;
+}
+
+.activity{
+margin-top:40px;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.activity h2{
+margin-bottom:15px;
+}
+
+.activity ul{
+list-style:none;
+}
+
+.activity li{
+padding:10px 0;
+border-bottom:1px solid #ddd;
+}
+</style>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>CRM System</h2>
+
+           <ul>
+
+            <li class="active">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </li>
+
+            <li onclick="window.location='leads.html'">
+                <i class="fa-solid fa-user-plus"></i>
+                Leads
+            </li>
+
+            <li onclick="window.location='customers.html'">
+                <i class="fa-solid fa-users"></i>
+                Customers
+            </li>
+
+            <li onclick="window.location='sales.html'">
+                <i class="fa-solid fa-sack-dollar"></i>
+                Sales
+            </li>
+
+            <li onclick="window.location='reports.html'">
+                <i class="fa-solid fa-chart-column"></i>
+                Reports
+            </li>
+
+            <li onclick="window.location='settings.html'">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </li>
+
+            <li onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </li>
+    
+
+        </ul>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="main">
+
+        <header>
+
+            <h1>Dashboard</h1>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-user-circle"></i>
+
+                Admin
+
+            </div>
+
+        </header>
+
+        <!-- Cards -->
+
+        <div class="cards">
+
+            <div class="card">
+                <i class="fa-solid fa-user-plus"></i>
+                <h2>245</h2>
+                <p>Total Leads</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-users"></i>
+                <h2>120</h2>
+                <p>Customers</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-handshake"></i>
+                <h2>84</h2>
+                <p>Deals Won</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                <h2>₹12.4L</h2>
+                <p>Revenue</p>
+            </div>
+
+        </div>
+
+        <!-- Recent Activity -->
+
+        <div class="activity">
+
+            <h2>Recent Activity</h2>
+
+            <ul>
+
+                <li>✅ New Lead Added</li>
+
+                <li>✅ Customer Registered</li>
+
+                <li>✅ Deal Closed Successfully</li>
+
+                <li>✅ Monthly Report Generated</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>

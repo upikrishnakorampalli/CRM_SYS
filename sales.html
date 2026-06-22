@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CRM - Sales</title>
+    <script>// Add Deal Button
+
+function addDeal(){
+
+    alert("Add Deal feature coming soon!");
+
+}
+
+// Search Function
+
+function searchDeal(){
+
+    let input = document.getElementById("search").value.toUpperCase();
+
+    let table = document.getElementById("salesTable");
+
+    let tr = table.getElementsByTagName("tr");
+
+    for(let i=1;i<tr.length;i++){
+
+        let td = tr[i].getElementsByTagName("td")[1];
+
+        if(td){
+
+            let text = td.textContent || td.innerText;
+
+            if(text.toUpperCase().indexOf(input) > -1){
+
+                tr[i].style.display="";
+
+            }
+
+            else{
+
+                tr[i].style.display="none";
+
+            }
+
+        }
+
+    }
+
+}
+
+// Logout
+
+function logout(){
+
+    let confirmLogout = confirm("Are you sure you want to logout?");
+
+    if(confirmLogout){
+
+        window.location.href="login.html";
+
+    }
+
+}</script>
+<style>*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.container{
+    display:flex;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#233b8f;
+    position:fixed;
+    color:white;
+}
+
+.sidebar h2{
+    text-align:center;
+    padding:25px;
+    font-size:22px;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:20px;
+}
+
+.sidebar ul li{
+    padding:16px;
+    margin-bottom:10px;
+    cursor:pointer;
+    border-radius:8px;
+    transition:.3s;
+    font-size:18px;
+}
+
+.sidebar ul li i{
+    margin-right:10px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active{
+    background:#3267e3;
+}
+
+/* Main */
+
+.main{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    color:#23439d;
+    font-size:38px;
+}
+
+.header button{
+    background:#3267e3;
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.header button:hover{
+    background:#23439d;
+}
+
+/* Toolbar */
+
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.toolbar input{
+    width:250px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.toolbar select{
+    width:220px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+/* Table */
+
+.table-box{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#3267e3;
+    color:white;
+    padding:15px;
+    font-size:17px;
+}
+
+td{
+    padding:16px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#f7f7f7;
+}
+
+/* Status */
+
+.won{
+    background:#18b96d;
+    color:white;
+    padding:7px 15px;
+    border-radius:20px;
+}
+
+.pending{
+    background:#f39c12;
+    color:white;
+    padding:7px 15px;
+    border-radius:20px;
+}
+
+.lost{
+    background:#e74c3c;
+    color:white;
+    padding:7px 15px;
+    border-radius:20px;
+}
+
+/* Buttons */
+
+.edit{
+    background:#3267e3;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.delete{
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.edit:hover{
+    background:#23439d;
+}
+
+.delete:hover{
+    background:#c62828;
+}</style>
+
+    <link rel="stylesheet" href="sales.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>CRM System</h2>
+
+        <ul>
+
+            <li onclick="window.location='dashboard.html'">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </li>
+
+            <li onclick="window.location='leads.html'">
+                <i class="fa-solid fa-user-plus"></i>
+                Leads
+            </li>
+
+            <li onclick="window.location='customers.html'">
+                <i class="fa-solid fa-users"></i>
+                Customers
+            </li>
+
+            <li class="active">
+                <i class="fa-solid fa-sack-dollar"></i>
+                Sales
+            </li>
+
+            <li onclick="window.location='reports.html'">
+                <i class="fa-solid fa-chart-column"></i>
+                Reports
+            </li>
+
+            <li onclick="window.location='settings.html'">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </li>
+
+            <li onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="main">
+
+        <div class="header">
+
+            <h1>Sales Management</h1>
+
+            <button onclick="addDeal()">
+                <i class="fa-solid fa-plus"></i>
+                Add Deal
+            </button>
+
+        </div>
+
+        <!-- Search & Filter -->
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search Deal..."
+                onkeyup="searchDeal()">
+
+            <select id="statusFilter">
+
+                <option>All Status</option>
+
+                <option>Won</option>
+
+                <option>Pending</option>
+
+                <option>Lost</option>
+
+            </select>
+
+        </div>
+
+        <!-- Sales Table -->
+
+        <div class="table-box">
+
+            <table id="salesTable">
+
+                <tr>
+
+                    <th>Deal ID</th>
+
+                    <th>Customer</th>
+
+                    <th>Company</th>
+
+                    <th>Amount</th>
+
+                    <th>Status</th>
+
+                    <th>Sales Person</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>D001</td>
+
+                    <td>Jathin</td>
+
+                    <td>ABC Pvt Ltd</td>
+
+                    <td>$5,000</td>
+
+                    <td>
+                        <span class="won">
+                            Won
+                        </span>
+                    </td>
+
+                    <td>David</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>D002</td>
+
+                    <td>Ajay</td>
+
+                    <td>XYZ Ltd</td>
+
+                    <td>$7,500</td>
+
+                    <td>
+                        <span class="pending">
+                            Pending
+                        </span>
+                    </td>
+
+                    <td>Praveen</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>D003</td>
+
+                    <td>Roja</td>
+
+                    <td>Google</td>
+
+                    <td>$12,000</td>
+
+                    <td>
+                        <span class="lost">
+                            Lost
+                        </span>
+                    </td>
+
+                    <td>Karthik</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+               
+                 <tr>
+
+                    <td>D004</td>
+
+                    <td>Varshini</td>
+
+                    <td>Amazon</td>
+
+                    <td>$27,000</td>
+
+                    <td>
+                        <span class="won">
+                            Won
+                        </span>
+                    </td>
+
+                    <td>krishna</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+                 <tr>
+
+                    <td>D005</td>
+
+                    <td>Robert</td>
+
+                    <td>ABC PVT ltd</td>
+
+                    <td>$10,000</td>
+
+                    <td>
+                        <span class="lost">
+                            lost
+                        </span>
+                    </td>
+
+                    <td>Lokesh</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+                 <tr>
+
+                    <td>D006</td>
+
+                    <td>Priya</td>
+
+                    <td>Amazon</td>
+
+                    <td>$15,500</td>
+
+                    <td>
+                        <span class="won">
+                            Won
+                        </span>
+                    </td>
+
+                    <td>Chandu</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+                 <tr>
+
+                    <td>D007</td>
+
+                    <td>Sachin</td>
+
+                    <td>Ekart</td>
+
+                    <td>$25,000</td>
+
+                    <td>
+                        <span class="won">
+                            won
+                        </span>
+                    </td>
+
+                    <td>Raju</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr> <tr>
+
+                    <td>D008</td>
+
+                    <td>Mohan</td>
+
+                    <td>Flipkart</td>
+
+                    <td>$1000</td>
+
+                    <td>
+                        <span class="lost">
+                            Lost
+                        </span>
+                    </td>
+
+                    <td>Chandu</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+                 <tr>
+
+                    <td>D009</td>
+
+                    <td>Robert</td>
+
+                    <td>XYZ ltd</td>
+
+                    <td>$4500</td>
+
+                    <td>
+                        <span class="pending">
+                            pending
+                        </span>
+                    </td>
+
+                    <td>Karthik</td>
+
+                    <td>
+
+                        <button class="edit">
+                            Edit
+                        </button>
+
+                        <button class="delete">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="sales.js"></script>
+
+</body>
+
+</html>

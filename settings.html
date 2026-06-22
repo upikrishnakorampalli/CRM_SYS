@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CRM Settings</title>
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.container{
+    display:flex;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#1e3a8a;
+    color:#fff;
+    position:fixed;
+}
+
+.sidebar h2{
+    text-align:center;
+    padding:20px;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:20px;
+}
+
+.sidebar li{
+    padding:15px;
+    margin:10px 0;
+    cursor:pointer;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.sidebar li:hover,
+.sidebar .active{
+    background:#2563eb;
+}
+
+/* Main */
+
+.main{
+    margin-left:250px;
+    width:100%;
+    padding:30px;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+header h1{
+    color:#1e3a8a;
+}
+
+.profile{
+    font-size:20px;
+    color:#333;
+}
+
+/* Settings Box */
+
+.settings-box{
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    max-width:700px;
+}
+
+.settings-box h2{
+    margin-bottom:25px;
+    color:#1e3a8a;
+}
+
+.settings-box label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#333;
+}
+
+.settings-box input,
+.settings-box select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+.settings-box input:focus,
+.settings-box select:focus{
+    border-color:#2563eb;
+}
+
+.settings-box button{
+    width:100%;
+    padding:14px;
+    margin-top:25px;
+    border:none;
+    border-radius:6px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.settings-box button:hover{
+    background:#1d4ed8;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.sidebar{
+    width:220px;
+}
+
+.main{
+    margin-left:220px;
+    padding:20px;
+}
+
+.settings-box{
+    max-width:100%;
+}
+
+}
+</style>
+<link rel="stylesheet" href="settings.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>CRM System</h2>
+
+        <ul>
+
+            <li onclick="window.location='dashboard.html'">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </li>
+
+            <li onclick="window.location='leads.html'">
+                <i class="fa-solid fa-user-plus"></i>
+                Leads
+            </li>
+
+            <li onclick="window.location='customers.html'">
+                <i class="fa-solid fa-users"></i>
+                Customers
+            </li>
+
+            <li onclick="window.location='sales.html'">
+                <i class="fa-solid fa-sack-dollar"></i>
+                Sales
+            </li>
+
+            <li onclick="window.location='reports.html'">
+                <i class="fa-solid fa-chart-column"></i>
+                Reports
+            </li>
+
+            <li class="active">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </li>
+
+            <li onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="main">
+
+        <header>
+
+            <h1>Settings</h1>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-user-circle"></i>
+                Admin
+
+            </div>
+
+        </header>
+
+        <!-- Settings Form -->
+
+        <div class="settings-box">
+
+            <h2>Account Settings</h2>
+
+            <form id="settingsForm">
+
+                <label>Full Name</label>
+                <input type="text" id="name" placeholder="Enter Full Name">
+
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="Enter Email">
+
+                <label>Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter Phone Number">
+
+                <label>New Password</label>
+                <input type="password" id="password" placeholder="Enter New Password">
+
+                <label>Theme</label>
+
+                <select id="theme">
+
+                    <option>Light</option>
+                    <option>Dark</option>
+
+                </select>
+
+                <button type="button" onclick="saveSettings()">
+                    Save Changes
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="settings.js"></script>
+
+</body>
+</html>

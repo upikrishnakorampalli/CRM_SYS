@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CRM - Leads</title>
+<script>function addLead(){
+
+    alert("Add Lead form will be added later.");
+
+}
+
+function logout(){
+
+    if(confirm("Logout?")){
+
+        window.location.href="login.html";
+
+    }
+
+}
+
+function searchLead(){
+
+    let input=document.getElementById("search").value.toUpperCase();
+
+    let table=document.getElementById("leadTable");
+
+    let tr=table.getElementsByTagName("tr");
+
+    for(let i=1;i<tr.length;i++){
+
+        let td=tr[i].getElementsByTagName("td")[0];
+
+        if(td){
+
+            let txt=td.textContent;
+
+            if(txt.toUpperCase().indexOf(input)>-1){
+
+                tr[i].style.display="";
+
+            }
+
+            else{
+
+                tr[i].style.display="none";
+
+            }
+
+        }
+
+    }
+
+}</script>
+<script>
+function editLead(btn){
+
+    let row = btn.parentElement.parentElement;
+
+    row.cells[0].innerHTML = prompt("Name", row.cells[0].innerHTML);
+    row.cells[1].innerHTML = prompt("Company", row.cells[1].innerHTML);
+    row.cells[2].innerHTML = prompt("Email", row.cells[2].innerHTML);
+    row.cells[3].innerHTML = prompt("Status", row.cells[3].innerHTML);
+
+}
+
+function deleteLead(btn){
+
+    if(confirm("Delete this lead?")){
+        btn.parentElement.parentElement.remove();
+    }
+
+}
+</script>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+.container{
+display:flex;
+}
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#1e3a8a;
+color:white;
+position:fixed;
+}
+
+.sidebar h2{
+text-align:center;
+padding:20px;
+}
+
+.sidebar ul{
+list-style:none;
+padding:20px;
+}
+
+.sidebar li{
+padding:15px;
+margin:10px 0;
+cursor:pointer;
+border-radius:8px;
+}
+
+.sidebar li:hover,
+.sidebar .active{
+background:#2563eb;
+}
+
+.main{
+margin-left:250px;
+padding:30px;
+width:100%;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.top button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 20px;
+cursor:pointer;
+border-radius:5px;
+}
+
+#search{
+width:300px;
+padding:10px;
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+th,td{
+padding:15px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+td button{
+padding:6px 12px;
+margin:2px;
+border:none;
+background:#2563eb;
+color:white;
+cursor:pointer;
+border-radius:5px;
+}
+
+td button:last-child{
+background:red;
+}</style>
+
+<link rel="stylesheet" href="leads.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>CRM System</h2>
+
+            <ul>
+
+            <li onclick="window.location='dashboard.html'">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </li>
+
+            <li class="active">
+                <i class="fa-solid fa-user-plus"></i>
+                Leads
+            </li>
+
+            <li onclick="window.location='customers.html'">
+                <i class="fa-solid fa-users"></i>
+                Customers
+            </li>
+
+            <li onclick="window.location='sales.html'">
+                <i class="fa-solid fa-sack-dollar"></i>
+                Sales
+            </li>
+
+            <li  onclick="window.location='reports.html'">
+                <i class="fa-solid fa-chart-column"></i>
+                Reports
+            </li>
+
+            <li onclick="window.location='settings.html'">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </li>
+
+            <li onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </li>
+
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <div class="top">
+
+            <h1>Lead Management</h1>
+
+            <button onclick="addLead()">+ Add Lead</button>
+
+        </div>
+
+        <input
+        type="text"
+        id="search"
+        placeholder="Search Lead..."
+        onkeyup="searchLead()">
+
+        <table id="leadTable">
+
+            <tr>
+
+                <th>Name</th>
+
+                <th>Company</th>
+
+                <th>Email</th>
+
+                <th>Status</th>
+
+                <th>Action</th>
+
+            </tr>
+
+            <tr>
+
+                <td>Radha</td>
+
+                <td>ABC Pvt Ltd</td>
+
+                <td>radha@gmail.com</td>
+
+                <td>New</td>
+
+                <td>
+
+                   <button onclick="editLead(this)">Edit</button>
+<button onclick="deleteLead(this)">Delete</button>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Siva</td>
+
+                <td>Google</td>
+
+                <td>siva@gmail.com</td>
+
+                <td>Qualified</td>
+
+                <td>
+<button onclick="editLead(this)">Edit</button>
+<button onclick="deleteLead(this)">Delete</button>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Prasad</td>
+
+                <td>Microsoft</td>
+
+                <td>prasad@gmail.com</td>
+
+                <td>Proposal</td>
+
+                <td>
+
+                   <button onclick="editLead(this)">Edit</button>
+<button onclick="deleteLead(this)">Delete</button>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>Siraj</td>
+                <td>Code Tech</td>
+                <td>siraj@gmail</td>
+                <td>New</td>
+                <td><button onclick="editLead(this)">Edit</button>
+<button onclick="deleteLead(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Kishan</td>
+                <td>SRH Pvt ltd</td>
+                <td>kishan@gmail</td>
+                <td>Qualified</td>
+               <td><button onclick="editLead(this)">Edit</button>
+<button onclick="deleteLead(this)">Delete</button></td>
+            </tr>
+             <tr>
+                <td>Sruthi</td>
+                <td>google</td>
+                <td>sruthi@gmail</td>
+                <td>New</td>
+              <td><button onclick="editLead(this)">Edit</button>
+<button onclick="deleteLead(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Nitish</td>
+                <td>Microsoft</td>
+                <td>nitish@gmail</td>
+                <td>Proposal</td>
+                <td><button onclick="editLead(this)">Edit</button>
+<button onclick="deleteLead(this)">Delete</button></td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+<script src="leads.js"></script>
+
+</body>
+</html>
